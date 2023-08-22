@@ -5,3 +5,10 @@ core_version_requirement: ^9 ||^10
 core: 8.x
 base theme: olivero
 screenshot: moderndrupal.png
+regions:
+  header: Header
+  moderndrupalmenu: Navigation
+  content: Content
+  footer: Footer
+  page_top: Page top
+  page_bottom: Page bottom
