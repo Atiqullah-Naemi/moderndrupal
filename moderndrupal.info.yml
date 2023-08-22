@@ -4,3 +4,4 @@ description: a simple and modern drupal theme
 core_version_requirement: ^9 ||^10
 core: 8.x
 base theme: olivero
+screenshot: moderndrupal.png
