@@ -1,0 +1,4 @@
+global-scripts:
+  version: 1.0
+  js:
+    reactjs-app/dist/assets/app.js: {}
