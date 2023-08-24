@@ -1,35 +1,39 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useEffect } from "react";
+import { getProperties } from "./actions/get-properties";
+import useProperties, { Property } from "./zustand/useProperties";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const { setPropeties, properties } = useProperties();
+
+  const getData = async () => {
+    const data = await getProperties();
+
+    setPropeties(data);
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <main>
+      {properties?.map((item: Property) => (
+        <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+          <img
+            className="rounded-t-lg"
+            src={item?.imageUrl}
+            alt={item?.title}
+          />
+
+          <div className="p-5">
+            <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+              {item?.title}
+            </h5>
+          </div>
+        </div>
+      ))}
+    </main>
+  );
 }
 
-export default App
+export default App;
